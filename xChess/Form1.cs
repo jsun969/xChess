@@ -84,6 +84,7 @@ namespace xChess
 
         private void 新游戏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ifWin = false;
             newChessBroard();
         }
 
@@ -179,7 +180,7 @@ namespace xChess
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("作者 : 荆棘Justin\n邮箱 : i@jsun969.cn\n开源地址 : https://github.com/jsun969/xChes","关于");
+            MessageBox.Show("作者 : 荆棘Justin\n邮箱 : i@jsun969.cn\n开源地址 : https://github.com/jsun969/xChess","关于");
         }
 
         private void Form1_Load(object sender, EventArgs e)
