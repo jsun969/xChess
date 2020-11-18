@@ -24,10 +24,12 @@ namespace xChess
             InitializeComponent();
         }
 
-        private void newChessBroard()
+        public void newChessBroard()
         {
             playerNum = 1;
             label1.Text = "当前棋手:玩家1";
+            label2.BackColor = Color.FromName("Red");
+            //label2.BackColor = Color.FromName(playerColor[1]);
             rowNum = (groupBox1.Height - 12) / 36;
             columnNum = (groupBox1.Width - 12) / 36;
             for (int i = 0; i < rowNum; i++)
@@ -158,12 +160,17 @@ namespace xChess
             }
             if (cou == winChessNum - 1) ifPlayerWin();
 
-            if(ifWin) label1.Text = "玩家" + playerNum.ToString() + "胜利!!";
+            if (ifWin)
+            {
+                label2.BackColor = Color.FromName(playerColor[playerNum]);
+                label1.Text = "玩家" + playerNum.ToString() + "胜利!!";
+            }
             else
             {
                 if (playerNum == playerCou) playerNum = 1;
                 else playerNum++;
                 label1.Text = "当前棋手:玩家" + playerNum.ToString();
+                label2.BackColor = Color.FromName(playerColor[playerNum]);
             } 
         }
 
