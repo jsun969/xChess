@@ -28,8 +28,7 @@ namespace xChess
         {
             playerNum = 1;
             label1.Text = "当前棋手:玩家1";
-            label2.BackColor = Color.FromName("Red");
-            //label2.BackColor = Color.FromName(playerColor[1]);
+            label2.BackColor = Color.FromName(playerColor[1]);
             rowNum = (groupBox1.Height - 12) / 36;
             columnNum = (groupBox1.Width - 12) / 36;
             for (int i = 0; i < rowNum; i++)
@@ -190,12 +189,21 @@ namespace xChess
             MessageBox.Show("作者 : 荆棘Justin\n邮箱 : i@jsun969.cn\n开源地址 : https://github.com/jsun969/xChess","关于");
         }
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.playerCou = playerCou;
+            Properties.Settings.Default.winChessNum = winChessNum;
+            Properties.Settings.Default.formWidth = Width;
+            Properties.Settings.Default.formHeight = Height;
+            Properties.Settings.Default.Save();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Width = Width - 39;
-            newChessBroard();
-            playerCou = 2;
-            winChessNum = 5;
+            playerCou = Properties.Settings.Default.playerCou;
+            winChessNum = Properties.Settings.Default.winChessNum;
+            Width = Properties.Settings.Default.formWidth;
+            Height = Properties.Settings.Default.formHeight;
             playerColor[1] = "Red";
             playerColor[2] = "Blue";
             playerColor[3] = "Pink";
@@ -205,6 +213,8 @@ namespace xChess
             playerColor[7] = "Orange";
             playerColor[8] = "Lime";
             playerColor[9] = "Purple";
+            label1.Width = Width - 39;
+            newChessBroard();
         }
     }
 }
