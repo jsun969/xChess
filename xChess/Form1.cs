@@ -175,18 +175,17 @@ namespace xChess
 
         private void 单机ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OfflineConfig offlineConfig = new OfflineConfig();
-            offlineConfig.Show();
+            
         }
 
         private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("默认双人五子棋，五子连一线者获胜\n玩家人数与获胜子数可在设置中自定义\n拖动放大窗体后点击新游戏即可扩大棋盘","帮助",MessageBoxButtons.OK,MessageBoxIcon.Information);
+  
         }
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("作者 : 荆棘Justin\n邮箱 : i@jsun969.cn\n开源地址 : https://github.com/jsun969/xChess","关于");
+            
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -196,6 +195,18 @@ namespace xChess
             Properties.Settings.Default.formWidth = Width;
             Properties.Settings.Default.formHeight = Height;
             Properties.Settings.Default.Save();
+        }
+
+        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OfflineConfig offlineConfig = new OfflineConfig();
+            offlineConfig.Show();
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -92,8 +92,8 @@
             // 
             // OfflineConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(317, 202);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
@@ -102,7 +102,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OfflineConfig";
-            this.Text = "单机设置";
+            this.Text = "设置";
             this.Load += new System.EventHandler(this.OfflineConfig_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -35,13 +35,9 @@
             this.导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.单机ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.联机ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,49 +98,10 @@
             // 
             // 设置ToolStripMenuItem
             // 
-            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.单机ToolStripMenuItem,
-            this.联机ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.设置ToolStripMenuItem.Text = "设置";
-            // 
-            // 单机ToolStripMenuItem
-            // 
-            this.单机ToolStripMenuItem.Name = "单机ToolStripMenuItem";
-            this.单机ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
-            this.单机ToolStripMenuItem.Text = "单机";
-            this.单机ToolStripMenuItem.Click += new System.EventHandler(this.单机ToolStripMenuItem_Click);
-            // 
-            // 联机ToolStripMenuItem
-            // 
-            this.联机ToolStripMenuItem.Enabled = false;
-            this.联机ToolStripMenuItem.Name = "联机ToolStripMenuItem";
-            this.联机ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
-            this.联机ToolStripMenuItem.Text = "联机";
-            // 
-            // 关于ToolStripMenuItem
-            // 
-            this.关于ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.帮助ToolStripMenuItem,
-            this.关于ToolStripMenuItem1});
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.关于ToolStripMenuItem.Text = "其他";
-            // 
-            // 帮助ToolStripMenuItem
-            // 
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
-            this.帮助ToolStripMenuItem.Text = "帮助";
-            this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
-            // 
-            // 关于ToolStripMenuItem1
-            // 
-            this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
-            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(122, 26);
-            this.关于ToolStripMenuItem1.Text = "关于";
-            this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
+            this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -160,6 +117,13 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 35);
             this.label2.TabIndex = 4;
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.关于ToolStripMenuItem.Text = "关于";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -193,14 +157,10 @@
         private System.Windows.Forms.ToolStripMenuItem 新游戏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导出ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 单机ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 联机ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
     }
 }
 
