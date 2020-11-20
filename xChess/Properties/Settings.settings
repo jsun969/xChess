@@ -14,5 +14,8 @@
     <Setting Name="formWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">400</Value>
     </Setting>
+    <Setting Name="ifMaximize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

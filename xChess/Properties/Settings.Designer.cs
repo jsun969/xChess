@@ -70,5 +70,17 @@ namespace xChess.Properties {
                 this["formWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ifMaximize {
+            get {
+                return ((bool)(this["ifMaximize"]));
+            }
+            set {
+                this["ifMaximize"] = value;
+            }
+        }
     }
 }

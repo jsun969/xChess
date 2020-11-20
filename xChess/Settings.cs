@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace xChess
 {
-    public partial class OfflineConfig : Form
+    public partial class Settings : Form
     {
-        public OfflineConfig()
+        public Settings()
         {
             InitializeComponent();
         }
@@ -34,6 +34,7 @@ namespace xChess
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            trackBar1.Value = int.Parse(textBox1.Text);
             int.TryParse(textBox1.Text, out int text);
             if (text < 2)
             {
@@ -47,6 +48,7 @@ namespace xChess
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            trackBar2.Value = int.Parse(textBox2.Text);
             int.TryParse(textBox2.Text, out int text);
             if (text < 5)
             {
@@ -69,6 +71,16 @@ namespace xChess
             Form1.playerCou = int.Parse(textBox1.Text);
             Form1.winChessNum = int.Parse(textBox2.Text);
             Close();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            textBox1.Text = trackBar1.Value.ToString();
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            textBox2.Text = trackBar2.Value.ToString();
         }
     }
 }
