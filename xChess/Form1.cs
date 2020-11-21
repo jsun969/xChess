@@ -1,37 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace xChess
 {
     public partial class Form1 : Form
     {
         private chessBtn[,] Btn = new chessBtn[1005, 1005];
-        private int rowNum,columnNum;
+        private int rowNum, columnNum;
         private int lastRowNum, lastColumnNum;
         public static int playerCnt;
         public static string[] playerColor = new string[15];
         private int playerNum;
         public static int winChessNum;
-        private int[,] playerNameTmp = new int[1005,1005];
+        private int[,] playerNameTmp = new int[1005, 1005];
         private bool ifWin;
-        private int playedChessCnt=0;
+        private int playedChessCnt = 0;
         public Form1()
         {
             InitializeComponent();
+            AllowDrop = true;
+            this.DragEnter += new DragEventHandler(Form1_DragEnter);
+            DragDrop += new DragEventHandler(Form1_DragDrop);
         }
 
         public void newChessBroard(int playerNewNum)
         {
             playerNum = playerNewNum;
-            label1.Text = "当前棋手:玩家"+playerNewNum.ToString();
+            label1.Text = "当前棋手:玩家" + playerNewNum.ToString();
             label2.BackColor = Color.FromName(playerColor[playerNewNum]);
             rowNum = (groupBox1.Height - 12) / 36;
             columnNum = (groupBox1.Width - 12) / 36;
@@ -52,7 +51,7 @@ namespace xChess
                     {
                         btnPosX = i,
                         btnPosY = j,
-                        Location = new Point(12 + 36 * (j-1), 12 + 36 * (i-1)),
+                        Location = new Point(12 + 36 * (j - 1), 12 + 36 * (i - 1)),
                         Size = new Size(30, 30),
                         Text = "",
                         TabStop = false,
@@ -77,9 +76,31 @@ namespace xChess
             导出ToolStripMenuItem.Enabled = false;
         }
 
+        private void openArchiveFile(string pathTmp)
+        {
+            try
+            {
+                string[] okStr = Regex.Split(Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(pathTmp))), "\r\n|\r|\n");
+                Height = int.Parse(okStr[0]);
+                Width = int.Parse(okStr[1]);
+                playerCnt = int.Parse(okStr[2]);
+                winChessNum = int.Parse(okStr[3]);
+                newChessBroard(int.Parse(okStr[4]));
+                for (int i = 1; i <= int.Parse(okStr[5]); i++)
+                {
+                    playerNameTmp[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])] = int.Parse(okStr[3 + 3 * i]);
+                    Btn[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])].BackColor = Color.FromName(playerColor[int.Parse(okStr[3 + 3 * i])]);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("导入错误,请检查存档文件", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void Form1_Resize(object sender, EventArgs e)
         {
-            label1.Width = Width-39;
+            label1.Width = Width - 39;
             groupBox1.Width = Width - 42;
             groupBox1.Height = Height - 156;
         }
@@ -101,9 +122,9 @@ namespace xChess
             playerNameTmp[chessBt.btnPosX, chessBt.btnPosY] = playerNum;
 
             int cou = 0;
-            int i,j;
+            int i, j;
             //行 
-            for (i = chessBt.btnPosY + 1; playerNameTmp[chessBt.btnPosX,i] == playerNum; i++)
+            for (i = chessBt.btnPosY + 1; playerNameTmp[chessBt.btnPosX, i] == playerNum; i++)
             {
                 cou++;
             }
@@ -111,7 +132,7 @@ namespace xChess
             {
                 cou++;
             }
-            if (cou == winChessNum-1) ifPlayerWin();
+            if (cou == winChessNum - 1) ifPlayerWin();
             //列 
             cou = 0;
             for (i = chessBt.btnPosX + 1; playerNameTmp[i, chessBt.btnPosY] == playerNum; i++)
@@ -173,7 +194,7 @@ namespace xChess
                 else playerNum++;
                 label1.Text = "当前棋手:玩家" + playerNum.ToString();
                 label2.BackColor = Color.FromName(playerColor[playerNum]);
-            } 
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -210,12 +231,12 @@ namespace xChess
             };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                string outputData = Height.ToString() + "\n" + Width.ToString() + "\n" + playerCnt.ToString() + "\n" + winChessNum.ToString() + "\n" + playerNum.ToString()+ "\n" + playedChessCnt.ToString();
+                string outputData = Height.ToString() + "\n" + Width.ToString() + "\n" + playerCnt.ToString() + "\n" + winChessNum.ToString() + "\n" + playerNum.ToString() + "\n" + playedChessCnt.ToString();
                 for (int i = 1; i <= rowNum; i++)
                 {
                     for (int j = 1; j <= columnNum; j++)
                     {
-                        if(playerNameTmp[i,j]!=0)
+                        if (playerNameTmp[i, j] != 0)
                         {
                             outputData += "\n" + playerNameTmp[i, j].ToString();
                             outputData += "\n" + i;
@@ -234,19 +255,24 @@ namespace xChess
                 Title = "导入",
                 Filter = "xChess存档|*.xchs",
             };
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string[] okStr = Regex.Split(Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(ofd.FileName))), "\r\n|\r|\n");
-                Height = int.Parse(okStr[0]);
-                Width = int.Parse(okStr[1]);
-                playerCnt = int.Parse(okStr[2]);
-                winChessNum = int.Parse(okStr[3]);
-                newChessBroard(int.Parse(okStr[4]));
-                for (int i = 1; i <= int.Parse(okStr[5]); i++)
-                {
-                    playerNameTmp[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])] = int.Parse(okStr[3 + 3 * i]);
-                    Btn[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])].BackColor = Color.FromName(playerColor[int.Parse(okStr[3 + 3 * i])]);
-                }
+                openArchiveFile(ofd.FileName);
+            }
+        }
+
+        void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            string filePath = files[0];
+            if(Path.GetExtension(filePath)==".xchs")
+            {
+                openArchiveFile(filePath);
             }
         }
 
@@ -256,7 +282,7 @@ namespace xChess
             winChessNum = Properties.Settings.Default.winChessNum;
             Width = Properties.Settings.Default.formWidth;
             Height = Properties.Settings.Default.formHeight;
-            if(Properties.Settings.Default.ifMaximize) WindowState = FormWindowState.Maximized;
+            if (Properties.Settings.Default.ifMaximize) WindowState = FormWindowState.Maximized;
             playerColor[1] = "Red";
             playerColor[2] = "Blue";
             playerColor[3] = "Pink";
