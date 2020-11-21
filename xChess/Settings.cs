@@ -62,13 +62,13 @@ namespace xChess
 
         private void OfflineConfig_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Form1.playerCou.ToString();
+            textBox1.Text = Form1.playerCnt.ToString();
             textBox2.Text = Form1.winChessNum.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.playerCou = int.Parse(textBox1.Text);
+            Form1.playerCnt = int.Parse(textBox1.Text);
             Form1.winChessNum = int.Parse(textBox2.Text);
             Close();
         }

@@ -96,6 +96,7 @@
             // 
             // trackBar1
             // 
+            this.trackBar1.LargeChange = 1;
             this.trackBar1.Location = new System.Drawing.Point(25, 60);
             this.trackBar1.Maximum = 9;
             this.trackBar1.Minimum = 2;
@@ -107,6 +108,7 @@
             // 
             // trackBar2
             // 
+            this.trackBar2.LargeChange = 1;
             this.trackBar2.Location = new System.Drawing.Point(25, 163);
             this.trackBar2.Maximum = 9;
             this.trackBar2.Minimum = 5;
