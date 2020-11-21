@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.游戏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,21 +79,21 @@
             // 新游戏ToolStripMenuItem
             // 
             this.新游戏ToolStripMenuItem.Name = "新游戏ToolStripMenuItem";
-            this.新游戏ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.新游戏ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.新游戏ToolStripMenuItem.Text = "新游戏";
             this.新游戏ToolStripMenuItem.Click += new System.EventHandler(this.新游戏ToolStripMenuItem_Click);
             // 
             // 导入ToolStripMenuItem
             // 
             this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
-            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.导入ToolStripMenuItem.Text = "导入";
             this.导入ToolStripMenuItem.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
             // 
             // 导出ToolStripMenuItem
             // 
             this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
-            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.导出ToolStripMenuItem.Text = "导出";
             this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
             // 
@@ -134,6 +135,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Form1";
