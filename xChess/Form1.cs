@@ -94,7 +94,8 @@ namespace xChess
             }
             catch (Exception)
             {
-                MessageBox.Show("导入错误,请检查存档文件", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("导入错误,请检查存档文件", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
             }
         }
 
