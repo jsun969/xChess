@@ -31,6 +31,7 @@ namespace xChess
         {
             playerNum = playerNewNum;
             label1.Text = "当前棋手:玩家" + playerNewNum.ToString();
+            导出ToolStripMenuItem.Enabled = false;
             label2.BackColor = Color.FromName(playerColor[playerNewNum]);
             rowNum = (groupBox1.Height - 12) / 36;
             columnNum = (groupBox1.Width - 12) / 36;
@@ -81,21 +82,24 @@ namespace xChess
             try
             {
                 string[] okStr = Regex.Split(Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(pathTmp))), "\r\n|\r|\n");
-                Height = int.Parse(okStr[0]);
-                Width = int.Parse(okStr[1]);
                 playerCnt = int.Parse(okStr[2]);
                 winChessNum = int.Parse(okStr[3]);
+                if (bool.Parse(okStr[6])) WindowState = FormWindowState.Maximized;
+                else 
+                {
+                    Height = int.Parse(okStr[0]);
+                    Width = int.Parse(okStr[1]);
+                }
                 newChessBroard(int.Parse(okStr[4]));
                 for (int i = 1; i <= int.Parse(okStr[5]); i++)
                 {
-                    playerNameTmp[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])] = int.Parse(okStr[3 + 3 * i]);
-                    Btn[int.Parse(okStr[4 + 3 * i]), int.Parse(okStr[5 + 3 * i])].BackColor = Color.FromName(playerColor[int.Parse(okStr[3 + 3 * i])]);
+                    playerNameTmp[int.Parse(okStr[5 + 3 * i]), int.Parse(okStr[6 + 3 * i])] = int.Parse(okStr[4 + 3 * i]);
+                    Btn[int.Parse(okStr[5 + 3 * i]), int.Parse(okStr[6 + 3 * i])].BackColor = Color.FromName(playerColor[int.Parse(okStr[4 + 3 * i])]);
                 }
             }
             catch (Exception)
             {
-                //MessageBox.Show("导入错误,请检查存档文件", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                MessageBox.Show("导入错误,请检查存档文件", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -108,7 +112,6 @@ namespace xChess
 
         private void 新游戏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            导出ToolStripMenuItem.Enabled = true;
             ifWin = false;
             newChessBroard(1);
         }
@@ -119,6 +122,7 @@ namespace xChess
             chessBtn chessBt = (chessBtn)sender;
             playedChessCnt++;
             chessBt.Enabled = false;
+            导出ToolStripMenuItem.Enabled = true;
             chessBt.BackColor = Color.FromName(playerColor[playerNum]);
             playerNameTmp[chessBt.btnPosX, chessBt.btnPosY] = playerNum;
 
@@ -213,6 +217,7 @@ namespace xChess
         {
             Settings offlineConfig = new Settings();
             offlineConfig.Show();
+            newChessBroard(1);
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -232,7 +237,9 @@ namespace xChess
             };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                string outputData = Height.ToString() + "\n" + Width.ToString() + "\n" + playerCnt.ToString() + "\n" + winChessNum.ToString() + "\n" + playerNum.ToString() + "\n" + playedChessCnt.ToString();
+                string outputData = Height.ToString() + "\n" + Width.ToString() + "\n" + playerCnt.ToString() + "\n" + winChessNum.ToString() + "\n" + playerNum.ToString() + "\n" + playedChessCnt.ToString() + "\n";
+                if (WindowState == FormWindowState.Maximized) outputData += "true";
+                else outputData += "false";
                 for (int i = 1; i <= rowNum; i++)
                 {
                     for (int j = 1; j <= columnNum; j++)

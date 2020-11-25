@@ -14,6 +14,8 @@ namespace xChess
         {
             textBox1.Text = Form1.playerCnt.ToString();
             textBox2.Text = Form1.winChessNum.ToString();
+            trackBar1.Value = Form1.playerCnt;
+            trackBar2.Value = Form1.winChessNum;
         }
 
         private void button1_Click(object sender, EventArgs e)
